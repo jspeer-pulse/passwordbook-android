@@ -13,7 +13,7 @@ public class PasswordAdapter extends RecyclerView.Adapter<PasswordAdapter.ViewHo
     private OnDeleteClickListener deleteListener;
 
     public interface OnDeleteClickListener {
-        void onDeleteClick(int id);
+        void onDeleteClick(PasswordItem item);
     }
 
     public PasswordAdapter(List<PasswordItem> data, OnDeleteClickListener listener) {
@@ -36,7 +36,7 @@ public class PasswordAdapter extends RecyclerView.Adapter<PasswordAdapter.ViewHo
         holder.passwordText.setText("Password: " + item.getPassword());
         holder.deleteBtn.setOnClickListener(v -> {
             if (deleteListener != null) {
-                deleteListener.onDeleteClick(item.getId());
+                deleteListener.onDeleteClick(item);
             }
         });
     }
