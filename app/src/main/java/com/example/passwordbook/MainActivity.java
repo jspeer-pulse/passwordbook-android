@@ -13,22 +13,19 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
-/**
- * 主界面：密码本管理
- * 功能：添加密码条目、展示已保存的密码列表、支持删除条目
- */
+
 public class MainActivity extends AppCompatActivity {
     // UI 组件
-    private EditText etPlatform, etAccount, etPassword;   // 输入框：平台、账号、密码
-    private RecyclerView recyclerView;                     // 密码列表
-    private PasswordAdapter adapter;                       // 列表适配器
-    private PasswordDatabaseHelper dbHelper;               // 数据库操作辅助类
+    private EditText etPlatform, etAccount, etPassword;
+    private RecyclerView recyclerView;
+    private PasswordAdapter adapter;
+    private PasswordDatabaseHelper dbHelper;
 
     // 额外顶部间距（单位 dp），设为 0 表示紧贴状态栏下方；可调整以适配设计需求
     private static final int EXTRA_SPACE_DP = 0;
@@ -36,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // ---- 未解锁保护：进程被杀死后重建时，跳回锁屏 ----
+        MyApp app = (MyApp) getApplication();
+        if (!app.isUnlocked()) {
+            android.content.Intent intent = new android.content.Intent(this, LockActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         // 获取根布局，用于动态设置内边距以避开状态栏
@@ -109,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ---------- 保存按钮点击事件 ----------
         btnSave.setOnClickListener(v -> {
-            // 获取输入内容并去除首尾空格
+
             String platform = etPlatform.getText().toString().trim();
             String account = etAccount.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
@@ -129,18 +136,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 刷新密码列表：从数据库重新加载数据并更新适配器
-     */
     private void refreshList() {
         List<PasswordItem> list = getAllPasswords();
         adapter.updateData(list);
     }
 
-    /**
-     * 获取数据库中所有密码条目
-     * @return 密码列表（按插入顺序，或由数据库查询排序决定）
-     */
     private List<PasswordItem> getAllPasswords() {
         return dbHelper.getAllPasswords();
     }
