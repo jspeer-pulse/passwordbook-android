@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:minHeight="38dp">
+        android:minHeight="44dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,13 +27,30 @@
             android:textColor="#3F51B5"
             android:textStyle="bold" />
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="传输"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#78909C"
+            android:minHeight="0dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginEnd="6dp" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="保存"
             android:textAllCaps="false"
+            android:textSize="14sp"
             app:cornerRadius="8dp"
-            android:backgroundTint="#3F51B5" />
+            android:backgroundTint="#3F51B5"
+            android:minHeight="0dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,12 +62,12 @@
             android:id="@+id/et_platform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
+            android:minHeight="40dp"
             android:gravity="center_vertical"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:textSize="16sp"
-            android:hint="Platform" />
+            android:textSize="15sp"
+            android:hint="平台" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,12 +79,12 @@
             android:id="@+id/et_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
+            android:minHeight="40dp"
             android:gravity="center_vertical"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:textSize="16sp"
-            android:hint="Account" />
+            android:textSize="15sp"
+            android:hint="账号" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -78,12 +96,12 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
+            android:minHeight="40dp"
             android:gravity="center_vertical"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:textSize="16sp"
-            android:hint="Password" />
+            android:textSize="15sp"
+            android:hint="密码" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView

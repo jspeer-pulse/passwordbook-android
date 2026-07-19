@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="#FAFAFA">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="警告"
+        android:text="确认删除"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#212121"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="以下密码将被永久删除："
-        android:textSize="14sp"
+        android:text="以下条目将被永久删除："
+        android:textSize="13sp"
         android:textColor="#757575"
         android:layout_marginBottom="16dp" />
 
@@ -26,34 +28,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#F5F5F5"
-        android:padding="12dp"
-        android:radius="8dp">
+        android:background="@drawable/dialog_card_bg"
+        android:padding="14dp"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/dialog_platform"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="平台："
             android:textSize="14sp"
             android:textColor="#616161"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/dialog_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账号："
             android:textSize="14sp"
             android:textColor="#616161"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/dialog_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码："
             android:textSize="14sp"
             android:textColor="#616161" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
+            android:layout_marginEnd="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#E53935" />
     </LinearLayout>
 </LinearLayout>

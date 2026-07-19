@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <!-- ═══ Shared scanner (used by both send-step1 and receive-step2) ═══ -->
+    <FrameLayout
+        android:id="@+id/container_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <com.journeyapps.barcodescanner.DecoratedBarcodeView
+            android:id="@+id/scanner_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:zxing_use_texture_view="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="#E0000000">
+
+            <TextView
+                android:id="@+id/tv_scanner_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_scanner_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_scanner_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#E53935" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ═══ Main content area ═══ -->
+    <LinearLayout
+        android:id="@+id/container_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tv_transfer_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="在两台设备间安全传输数据"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="24dp" />
+
+        <!-- ═══ Mode selection ═══ -->
+        <LinearLayout
+            android:id="@+id/layout_mode_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_send_mode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="发送"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_receive_mode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="接收"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#78909C" />
+        </LinearLayout>
+
+        <!-- ═══ Send: show data QRs ═══ -->
+        <LinearLayout
+            android:id="@+id/layout_send_qr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送数据"
+                android:textSize="16sp"
+                android:textColor="#212121"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚠ 请确保两台设备使用相同主密码"
+                android:textSize="13sp"
+                android:textColor="#E53935"
+                android:layout_marginBottom="12dp" />
+
+            <ImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:contentDescription="传输二维码" />
+
+            <TextView
+                android:id="@+id/tv_frame_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/1"
+                android:textSize="20sp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_frame_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请接收方扫描后，点击「下一帧」继续"
+                android:textSize="13sp"
+                android:textColor="#757575"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_next_frame"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="下一帧 →"
+                    android:textAllCaps="false"
+                    app:cornerRadius="8dp"
+                    android:backgroundTint="#4CAF50"
+                    android:layout_marginEnd="4dp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_transfer_done"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="传输完成"
+                    android:textAllCaps="false"
+                    app:cornerRadius="8dp"
+                    android:backgroundTint="#3F51B5"
+                    android:layout_marginStart="4dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="8dp"
+                android:text="取消传输"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#E53935" />
+        </LinearLayout>
+
+        <!-- ═══ Receive: show own pubkey QR ═══ -->
+        <LinearLayout
+            android:id="@+id/layout_recv_pubkey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_pubkey_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="等待发送方扫描"
+                android:textSize="16sp"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp" />
+
+            <ImageView
+                android:id="@+id/iv_recv_pubkey_qr"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:contentDescription="传输二维码" />
+
+            <TextView
+                android:id="@+id/tv_pubkey_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请发送方扫描此二维码"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_recv_start_scan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="发送方已扫描，开始接收数据"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#3F51B5"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel_recv_pubkey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="取消"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#E53935" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Title bar — always on top, visible during scanning but not obstructing viewfinder -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:text="PasswordBook"
+        android:textSize="18sp"
+        android:textColor="#3F51B5"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:elevation="4dp"
+        android:background="#FAFAFA" />
+
+</FrameLayout>
