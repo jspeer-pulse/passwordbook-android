@@ -14,8 +14,8 @@ android {
         applicationId = "com.example.passwordbook"
         minSdk = 24
         targetSdk = 36
-        versionCode = 5
-        versionName = "2.0.0"
+        versionCode = 6
+        versionName = "2.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
